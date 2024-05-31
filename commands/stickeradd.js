@@ -3,14 +3,14 @@ const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('stickeradd')
-        .setDescription('Add a new sticker to the server')
+        .setDescription('Thêm một sticker mới vào máy chủ')
         .addStringOption(option =>
             option.setName('sticker')
-                .setDescription('The sticker URL')
+                .setDescription('URL của sticker')
                 .setRequired(true))
         .addStringOption(option =>
             option.setName('name')
-                .setDescription('The name for the sticker')
+                .setDescription('Tên cho sticker')
                 .setRequired(true)),
     async execute(interaction) {
         const stickerUrl = interaction.options.getString('sticker');
@@ -24,14 +24,14 @@ module.exports = {
             });
 
             const embed = new EmbedBuilder()
-                .setTitle('Sticker Added')
-                .setDescription(`Successfully added sticker with the name \`${sticker.name}\``)
+                .setTitle('Sticker Đã Được Thêm')
+                .setDescription(`Đã thêm thành công sticker với tên \`${sticker.name}\``)
                 .setColor('#0099ff');
 
             await interaction.reply({ embeds: [embed] });
         } catch (error) {
             console.error(error);
-            await interaction.reply({ content: 'Failed to add sticker.', ephemeral: true });
+            await interaction.reply({ content: 'Thêm sticker thất bại.', ephemeral: true });
         }
     },
 };
