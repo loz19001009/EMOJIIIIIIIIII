@@ -3,25 +3,26 @@ const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('help')
-        .setDescription('List all commands'),
+        .setDescription('Liệt kê tất cả các lệnh'),
     async execute(interaction) {
         const embed = new EmbedBuilder()
-            .setTitle('Help - List of Commands')
-            .setDescription('Here are the available commands:')
+            .setTitle('Trợ Giúp - Danh Sách Lệnh')
+            .setDescription('Dưới đây là các lệnh có sẵn:')
             .addFields(
-                { name: '😃 /listemojis', value: 'List all emojis in the server', inline: true },
-                { name: '➕ /emojiadd [emoji]', value: 'Add a new emoji to the server', inline: true },
-                { name: '🔍 /emojienlarge [emoji]', value: 'Enlarge a specified emoji', inline: true },
-                { name: '🕵️ /emojisteal [message link]', value: 'Steal an emoji from a message link', inline: true },
-                { name: '➕ /stickeradd [sticker]', value: 'Add a new sticker to the server', inline: true },
-                { name: '🎟️ /liststickers', value: 'List all stickers in the server', inline: true },
-                { name: 'ℹ️ /help', value: 'Show the list of commands', inline: true },
-                { name: '⏱️ /uptime', value: 'Check the bot\'s uptime', inline: true },
-                { name: '🏓 /ping', value: 'Check the bot\'s ping', inline: true }
+                { name: '😃 /listemojis', value: 'Liệt kê tất cả emoji trong máy chủ', inline: true },
+                { name: '➕ /emojiadd [emoji]', value: 'Thêm một emoji mới vào máy chủ', inline: true },
+                { name: '🔍 /emojienlarge [emoji]', value: 'Phóng to một emoji cụ thể', inline: true },
+                { name: '🕵️ /emojisteal [liên kết tin nhắn]', value: 'Đánh cắp một emoji từ liên kết tin nhắn', inline: true },
+                { name: '➕ /stickeradd [sticker]', value: 'Thêm một sticker mới vào máy chủ', inline: true },
+                { name: '🎟️ /liststickers', value: 'Liệt kê tất cả sticker trong máy chủ', inline: true },
+                { name: 'ℹ️ /help', value: 'Hiển thị danh sách các lệnh', inline: true },
+                { name: '⏱️ /uptime', value: 'Kiểm tra thời gian hoạt động của bot', inline: true },
+                { name: '🏓 /ping', value: 'Kiểm tra độ trễ của bot', inline: true }
             )
             .setColor('#0099ff')
-            .setFooter({ text: 'Emoji Manager Made By Friday', iconURL: 'https://cdn3.emoji.gg/emojis/6307-management.png' }); // Add a suitable icon URL for your bot
+            .setFooter({ text: 'Quản Lý Emoji Được Tạo Bởi Friday', iconURL: 'https://cdn3.emoji.gg/emojis/6307-management.png' }); // Thêm một URL icon phù hợp cho bot của bạn
 
         await interaction.reply({ embeds: [embed] });
     },
 };
+
