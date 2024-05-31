@@ -3,10 +3,10 @@ const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('emojienlarge')
-        .setDescription('Enlarge an emoji')
+        .setDescription('Phóng to một emoji')
         .addStringOption(option =>
             option.setName('emoji')
-                .setDescription('The emoji to enlarge')
+                .setDescription('Emoji cần phóng to')
                 .setRequired(true)),
     async execute(interaction) {
         const emoji = interaction.options.getString('emoji');
@@ -20,7 +20,7 @@ module.exports = {
 
             await interaction.reply({ embeds: [embed] });
         } else {
-            // Handle standard emoji
+            // Xử lý emoji chuẩn
             const emojiRegex = /<a?:\w+:(\d+)>/;
             const match = emoji.match(emojiRegex);
             if (match) {
@@ -28,14 +28,15 @@ module.exports = {
                 const emojiUrl = `https://cdn.discordapp.com/emojis/${emojiId}.png?v=1`;
 
                 const embed = new EmbedBuilder()
-                    .setTitle('Enlarged Emoji')
+                    .setTitle('Emoji Phóng To')
                     .setImage(emojiUrl)
                     .setColor('#0099ff');
 
                 await interaction.reply({ embeds: [embed] });
             } else {
-                await interaction.reply({ content: 'Emoji not found or not a custom emoji.', ephemeral: true });
+                await interaction.reply({ content: 'Không tìm thấy emoji hoặc không phải là emoji tùy chỉnh.', ephemeral: true });
             }
         }
     },
 };
+
