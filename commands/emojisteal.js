@@ -4,17 +4,17 @@ const fetch = require('node-fetch');
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('emojisteal')
-        .setDescription('Steal an emoji from a message link')
+        .setDescription('Đánh cắp một emoji từ một liên kết tin nhắn')
         .addStringOption(option =>
             option.setName('message_link')
-                .setDescription('The link to the message with the emoji')
+                .setDescription('Liên kết đến tin nhắn chứa emoji')
                 .setRequired(true)),
     async execute(interaction) {
         const messageLink = interaction.options.getString('message_link');
         const linkParts = messageLink.split('/');
 
         if (linkParts.length !== 7) {
-            await interaction.reply({ content: 'Invalid message link.', ephemeral: true });
+            await interaction.reply({ content: 'Liên kết tin nhắn không hợp lệ.', ephemeral: true });
             return;
         }
 
@@ -27,7 +27,7 @@ module.exports = {
             const emojiMatch = message.content.match(emojiRegex);
 
             if (!emojiMatch) {
-                await interaction.reply({ content: 'No emoji found in the message.', ephemeral: true });
+                await interaction.reply({ content: 'Không tìm thấy emoji trong tin nhắn.', ephemeral: true });
                 return;
             }
 
@@ -35,14 +35,14 @@ module.exports = {
             const emojiUrl = `https://cdn.discordapp.com/emojis/${emojiId}.png?v=1`;
 
             const embed = new EmbedBuilder()
-                .setTitle('Stolen Emoji')
+                .setTitle('Emoji Đã Đánh Cắp')
                 .setImage(emojiUrl)
                 .setColor('#0099ff');
 
             await interaction.reply({ embeds: [embed] });
         } catch (error) {
             console.error(error);
-            await interaction.reply({ content: 'Failed to steal emoji.', ephemeral: true });
+            await interaction.reply({ content: 'Đánh cắp emoji thất bại.', ephemeral: true });
         }
     },
 };
